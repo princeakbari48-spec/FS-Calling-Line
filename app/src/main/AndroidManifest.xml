@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.CAMERA"/><uses-feature android:name="android.hardware.camera" android:required="false"/><uses-feature android:name="android.hardware.bluetooth" android:required="true"/>
+ <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30"/>
+ <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30"/>
+ <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+ <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+ <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"/>
+ <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+ <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+ <uses-permission android:name="android.permission.CALL_PHONE"/><uses-permission android:name="android.permission.READ_CONTACTS"/><uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/><uses-feature android:name="android.hardware.telephony" android:required="true"/><application android:icon="@drawable/fs_icon" android:dataExtractionRules="@xml/data_extraction_rules" android:label="FS Calling Line" android:theme="@android:style/Theme.Material.NoActionBar" android:allowBackup="false" android:fullBackupContent="false" android:supportsRtl="true">
+  <activity android:name="com.journeyapps.barcodescanner.CaptureActivity" android:screenOrientation="portrait" tools:replace="android:screenOrientation"/><activity android:name=".MainActivity" android:exported="true">
+   <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+  <intent-filter><action android:name="android.intent.action.DIAL"/><category android:name="android.intent.category.DEFAULT"/></intent-filter><intent-filter><action android:name="android.intent.action.DIAL"/><category android:name="android.intent.category.DEFAULT"/><data android:scheme="tel"/></intent-filter></activity>
+  <service android:name=".BluetoothService" android:exported="false" android:foregroundServiceType="connectedDevice"/>
+ <service
+     android:name=".NetworkService"
+     android:exported="false"
+     android:foregroundServiceType="connectedDevice"/>
+ <service android:name=".CallService" android:permission="android.permission.BIND_INCALL_SERVICE" android:exported="true"><meta-data android:name="android.telecom.IN_CALL_SERVICE_UI" android:value="true"/><intent-filter><action android:name="android.telecom.InCallService"/></intent-filter></service><receiver android:name=".CallActionReceiver" android:exported="false"/></application>
+</manifest>
+
+
+
+
+
